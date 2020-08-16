@@ -1,6 +1,9 @@
+let computerChoice = computerAction();
+let userChoice = userAction();
+
 function computerAction(){
     let choice = Math.ceil(Math.random() * 3);
-    let computerChoice;
+    let computerChoice = "";
 
         switch(choice){
 
@@ -17,40 +20,49 @@ function computerAction(){
     return computerChoice;
 };
 
+function userAction(){
 
-let userChoice = prompt("Pick Rock Paper or Scissors");
-if(userChoice === ""){
-    console.log("Okay we are going to pick rock paper or scissors for you");
-    let choice = Math.ceil(Math.random() * 3);
+    let userChoice = prompt("Pick Rock Paper or Scissors");
 
-    switch(choice){
+    if(userChoice === ""){
+        console.log("Okay we are going to pick rock paper or scissors for you");
+        let choice = Math.ceil(Math.random() * 3);
 
-        case 1:
-            userChoice = "rock";
-            break;
-        case 2: 
-            userChoice = "paper";
-            break;    
-        case 3: 
-            userChoice = "scissors";
-            break;
+        switch(choice){
+
+            case 1:
+                userChoice = "rock";
+                break;
+            case 2: 
+                userChoice = "paper";
+                break;    
+            case 3: 
+                userChoice = "scissors";
+                break;
+        }
+
     }
+    else
+        userChoice =  userChoice.toLowerCase();
+    
+    return userChoice;
 
 }
-else
-    userChoice =  userChoice.toLowerCase();
 
-console.log(`User's Choice: ${userChoice}`);
+function playRound(userChoice, computerChoice){
+    console.log(`User's Choice: ${userChoice}`);
+    console.log(`Computer's Choice: ${computerChoice}`);
 
-let computerChoice = computerAction();
-console.log(`Computer's Choice: ${computerChoice}`);
+    if(computerChoice === "scissors" && userChoice === "paper") console.log("Computer Wins");
+    else if(computerChoice === "rock" && userChoice === "scissors") console.log("Computer Wins");
+    else if(computerChoice === "paper" && userChoice === "rock") console.log("Computer Wins");
+    else if(userChoice === "scissors" && computerChoice === "paper") console.log("User Wins");
+    else if(userChoice === "paper" && computerChoice === "rock") console.log("User Wins");
+    else if(userChoice === "rock" && computerChoice === "scissors") console.log("User Wins");
+    else console.log("It's a draw");
 
-if(computerChoice === "scissors" && userChoice === "paper") console.log("Computer Wins");
-else if(computerChoice === "rock" && userChoice === "scissors") console.log("Computer Wins");
-else if(computerChoice === "paper" && userChoice === "rock") console.log("Computer Wins");
-else if(userChoice === "scissors" && computerChoice === "paper") console.log("User Wins");
-else if(userChoice === "paper" && computerChoice === "rock") console.log("User Wins");
-else if(userChoice === "rock" && computerChoice === "scissors") console.log("User Wins");
-else console.log("It's a draw");
+}
+
+playRound(userChoice, computerChoice);
 
 
