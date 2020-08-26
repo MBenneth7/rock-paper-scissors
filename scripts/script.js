@@ -1,9 +1,10 @@
 let userWins = 0;
 let compWins = 0;
-let limit = 0;
-let computerChoice = "";
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissors = document.querySelector("#scissors");
 let userChoice = "";
-
+let computerChoice = "";
 
 
 function computerAction(){
@@ -27,8 +28,10 @@ function computerAction(){
 
 function userAction(){
 
-    let userPrompt = prompt("Pick Rock Paper or Scissors");
+    //let userPrompt = prompt("Pick Rock Paper or Scissors");
 
+
+    /*
     if(userPrompt === ""){
         console.log("Okay we are going to pick rock paper or scissors for you");
         let choice = Math.ceil(Math.random() * 3);
@@ -49,9 +52,9 @@ function userAction(){
     }
     else
         userPrompt =  userPrompt.toLowerCase();
+    */
 
-    return userPrompt;
-
+    //return userPrompt;
 }
 
 function playRound(userChoice, computerChoice){
@@ -91,24 +94,54 @@ function playRound(userChoice, computerChoice){
 
 function game(){
     
-    while(limit < 5){
-        userChoice = userAction();
+    rock.addEventListener("click",()=>{
+        userChoice = "rock";
         computerChoice = computerAction();
         playRound(userChoice, computerChoice);
         console.log(`User Wins: ${userWins}`);
         console.log(`Comp Wins: ${compWins}`);
-        limit++;
+        
+        if(userWins === 5)
+            console.log("User wins the WAR!!!!");
+        else if(compWins === 5)
+            console.log("The day belongs to the MACHINES!!!!");     
+    });
 
-    }
+    paper.addEventListener("click",()=>{
+        userChoice = "paper";
+        computerChoice = computerAction();
+        playRound(userChoice, computerChoice);
+        console.log(`User Wins: ${userWins}`);
+        console.log(`Comp Wins: ${compWins}`);
 
-    if(userWins > compWins)
-        console.log("User wins the WAR!!!!");
-    else
-        console.log("The day belongs to the MACHIINES!!!!");     
+        if(userWins === 5)
+            console.log("User wins the WAR!!!!");
+        else if(compWins === 5)
+            console.log("The day belongs to the MACHINES!!!!"); 
+    });
+        
+    scissors.addEventListener("click",()=>{
+        userChoice = "scissors";
+        computerChoice = computerAction();
+        playRound(userChoice, computerChoice);
+        console.log(`User Wins: ${userWins}`);
+        console.log(`Comp Wins: ${compWins}`);
+
+        if(userWins === 5)
+            console.log("User wins the WAR!!!!");
+        else if(compWins === 5)
+            console.log("The day belongs to the MACHINES!!!!"); 
+    });
 
 }
 
 game();
+       
+
+
+
+
+
 
 
 
